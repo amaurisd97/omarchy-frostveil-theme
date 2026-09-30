@@ -7,6 +7,13 @@
 @define-color background #0e1114;
 @define-color foreground #e4edf2;
 
+/* Two-tone accent, same split as colors.toml: the deep ice is the button
+   fill and always carries a white label (5.42:1), the bright ice is text on
+   the dark background (10.45:1). */
+@define-color accent #2c7190;
+@define-color bright_accent #6bcee5;
+@define-color on_accent #ffffff;
+
 @define-color black #0e1114;
 @define-color red #277789;
 @define-color green #7089a4;
@@ -25,9 +32,9 @@
 @define-color bright_white #f0f4f6;
 
 /* Adwaita Color Overrides */
-@define-color accent_bg_color @blue;
-@define-color accent_fg_color @background;
-@define-color accent_color @cyan;
+@define-color accent_bg_color @accent;
+@define-color accent_fg_color @on_accent;
+@define-color accent_color @bright_accent;
 
 @define-color window_bg_color @background;
 @define-color window_fg_color @foreground;
@@ -72,8 +79,8 @@
 @define-color theme_text_color @foreground;
 @define-color theme_bg_color @background;
 @define-color theme_base_color @black;
-@define-color theme_selected_bg_color @blue;
-@define-color theme_selected_fg_color @background;
+@define-color theme_selected_bg_color @accent;
+@define-color theme_selected_fg_color @on_accent;
 @define-color insensitive_bg_color @background;
 @define-color insensitive_fg_color @bright_black;
 @define-color insensitive_base_color @black;
@@ -81,8 +88,8 @@
 @define-color theme_unfocused_text_color @foreground;
 @define-color theme_unfocused_bg_color @background;
 @define-color theme_unfocused_base_color @black;
-@define-color theme_unfocused_selected_bg_color @blue;
-@define-color theme_unfocused_selected_fg_color @background;
+@define-color theme_unfocused_selected_bg_color @accent;
+@define-color theme_unfocused_selected_fg_color @on_accent;
 @define-color unfocused_insensitive_color @bright_black;
 @define-color unfocused_borders alpha(@foreground, 0.1);
 @define-color warning_color @yellow;
@@ -122,7 +129,8 @@ messagedialog button {
 }
 
 messagedialog button:hover {
-    background-color: @blue;
+    background-color: @accent;
+    color: @on_accent;
 }
 
 banner revealer widget {

@@ -59,6 +59,17 @@ countdown. The shell sections that must keep bright ice — `[bar]`,
 `[image-picker]` — are pinned through `shell.<section>.toml` overrides, which
 Omarchy merges into the generated `shell.toml` at theme-set time.
 
+`gtk.css` follows the same split. GTK apps get `accent_bg_color` = deep ice
+with a white label (`accent_fg_color`, 5.42:1), and their selection background
+too, since Adwaita uses one colour for both the accent fill and text
+selection. Accent-coloured *text* — links, labelled values — takes the bright
+ice (`accent_color`) instead, because it sits on the dark background rather
+than on the accent.
+
+Note that the deep ice cannot carry a dark label: `#0e1114` on `#2c7190` is
+only 3.49:1, which fails AA for body text. That is the whole reason the accent
+is dark and paired with white.
+
 ## Border gradient
 
 The gradient lives in one field and drives both Hyprland windows and the
