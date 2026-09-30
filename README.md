@@ -16,8 +16,8 @@ edge, so windows read as lit at the corners and dim in the middle.
 |---|---|
 | Background | `#0e1114` |
 | Foreground | `#e4edf2` |
-| Accent (ice) | `#6bcee5` |
-| Selection bg | `#6bcee5` |
+| Accent (deep ice) | `#2c7190` |
+| Selection bg / bright ice | `#6bcee5` |
 | Selection fg | `#0e1114` |
 | Muted | `#5c646d` |
 | Dark surface | `#2b4663` |
@@ -31,6 +31,19 @@ that bold text and TUI key hints stay legible. The ramp is monotonic: the six
 normal slots sit at strictly increasing lightness with no two neighbours able to
 collapse into each other. Neovim is the one exception: it uses Ashen, see
 [Neovim](#neovim) below.
+
+### Two ice blues
+
+Frostveil carries two accent blues. The `accent` token is the **deep ice**
+`#2c7190`: it is what app buttons read (omawrite, for example, paints its
+primary button with the theme's `accent` and hardcodes white text), and white on
+`#2c7190` clears WCAG AA (5.42:1). The **bright ice** `#6bcee5` is reserved for
+surfaces that sit on the dark background, where it is the selection tint,
+the polkit glyph, the launcher/menu selected text and the notification
+countdown. The shell sections that must keep bright ice — `[bar]`,
+`[notifications]`, `[menu]`, `[launcher]`, `[polkit]`, `[lock]` and
+`[image-picker]` — are pinned through `shell.<section>.toml` overrides, which
+Omarchy merges into the generated `shell.toml` at theme-set time.
 
 ## Border gradient
 
@@ -79,6 +92,12 @@ terminal text, and stored as WebP q82 (197 KiB) to keep the repository light.
 | `icons.theme` | icon set (`Yaru-prussiangreen-dark`) |
 | `walker.css`, `wofi.css`, `swayosd.css`, `waybar.css`, `mako.ini` | shell surfaces |
 | `shell.bar.toml` | overrides the generated `[bar]` section in `shell.toml` (urgent/attention colour) |
+| `shell.notifications.toml` | overrides `[notifications]` (keeps the countdown on bright ice) |
+| `shell.menu.toml` | overrides `[menu]` (selected-text stays bright ice) |
+| `shell.launcher.toml` | overrides `[launcher]` (selected-text stays bright ice) |
+| `shell.polkit.toml` | overrides `[polkit]` (accent glyph stays bright ice) |
+| `shell.lock.toml` | overrides `[lock]` (input selection stays bright ice) |
+| `shell.image-picker.toml` | overrides `[image-picker]` (selected border stays bright ice) |
 | `obsidian.css` | Obsidian editor |
 | `backgrounds/BG2.webp` | desktop background |
 | `preview.png` | preview shown in the theme switcher |
