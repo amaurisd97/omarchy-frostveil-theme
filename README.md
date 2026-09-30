@@ -29,7 +29,7 @@ and the shell all read, so editing `colors.toml` updates the whole desktop.
 Every `bright_*` slot is genuinely lighter than its `regular_*` counterpart so
 that bold text and TUI key hints stay legible. The ramp is monotonic: the six
 normal slots sit at strictly increasing lightness with no two neighbours able to
-collapse into each other. Neovim is the one exception: it uses Ashen, see
+collapse into each other. Neovim is generated from the same ramp, see
 [Neovim](#neovim) below.
 
 ### Two ice blues
@@ -83,7 +83,6 @@ terminal text, and stored as WebP q82 (197 KiB) to keep the repository light.
 | `colors.toml` | source of truth, drives every template below |
 | `hyprland.conf` | window/decoration settings and colours |
 | `hyprlock.conf` | lock screen colours |
-| `neovim.lua` | Neovim, sets `colorscheme = "ashen"` |
 | `foot.ini` | foot, the default Omarchy terminal |
 | `alacritty.toml`, `ghostty.conf`, `kitty.conf`, `warp.yaml` | other terminals |
 | `gtk.css` | GTK4 / Adwaita apps |
@@ -111,44 +110,42 @@ on your machine:**
 
 | File | Why it is skipped |
 |---|---|
-| `neovim.lua` | `*.lua` is dropped (Neovim loads it at startup) |
 | `alacritty.toml`, `ghostty.conf`, `kitty.conf`, `foot.ini` | terminal configs name the program to launch |
 
 Everything else — `colors.toml`, `backgrounds/`, `preview.png`,
-`hyprland.conf`, `hyprlock.conf`, the CSS files, `chromium.theme` and
-`icons.theme` — is installed normally and needs no manual step.
+`hyprland.conf`, `hyprlock.conf`, the CSS files, `chromium.theme`,
+`icons.theme` and the `shell.<section>.toml` overrides — is installed
+normally and needs no manual step.
 
 If you want the skipped ones, the instructions are below.
 
 ## Neovim
 
-Frostveil does not ship its own editor colorscheme. Neovim uses
-[ashen.nvim](https://github.com/ficcdaf/ashen.nvim), which is warm and
-ember-toned: the one deliberately warm thing on this desktop, so editor content
-stands apart from the cold UI around it.
+Omarchy generates a Neovim spec from `colors.toml` on every `omarchy theme set`
+and writes it to `~/.local/state/omarchy/current/theme/neovim.lua`. That spec
+drives [aether.nvim](https://github.com/bjarneo/aether.nvim) — `bg`, `fg`,
+`muted`, `selection`, the full ANSI ramp and the `accent` — so the editor is
+coloured straight from this palette rather than from a second one kept in sync
+by hand.
 
-`neovim.lua` is **not** installed automatically (see the note above). To get
-Ashen, add the plugin and set the colorscheme in your own LazyVim config.
+Nothing installs that spec for you, because it belongs to your Neovim config.
+Point LazyVim at it with a symlink:
 
-For LazyVim, create `~/.config/nvim/lua/plugins/neovim.lua`:
-
-```lua
-return {
-  { "ficcdaf/ashen.nvim" },
-  {
-    "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "ashen",
-    },
-  },
-}
+```bash
+ln -sf ~/.local/state/omarchy/current/theme/neovim.lua \
+        ~/.config/nvim/lua/plugins/theme.lua
 ```
 
-Restart Neovim afterwards. If Ashen does not appear, run `:Lazy sync` once.
+The name matters. Omarchy's `omarchy-theme-hotreload.lua` looks for
+`plugins.theme` to re-colour the editor when you switch themes, so a symlink
+named anything else (an older `plugins/neovim.lua`, say) silently disables
+hot-reloading. With the symlink in place, `LazyVim/LazyVim` picks up
+`colorscheme = "aether"` from the spec and the editor follows the desktop.
 
-If you would rather have a colorscheme generated straight from `colors.toml`,
-skip Ashen entirely and delete `neovim.lua` from your copy of the theme —
-Omarchy then regenerates it from the palette on every `omarchy theme set`.
+Restart Neovim afterwards. If Aether does not appear, run `:Lazy sync` once.
+
+If you prefer a colorscheme that stands apart from the UI, delete the symlink
+and set your own `colorscheme` in `~/.config/nvim/lua/plugins/` instead.
 
 ## Terminals
 
@@ -325,8 +322,8 @@ Cycle through the bundled background with `omarchy theme bg next`.
 - The ramp philosophy — a desaturated palette separated by strictly increasing
   lightness rather than by hue — follows the stock
   [Solitude](https://github.com/omarchy/solitude) theme.
-- Neovim support uses [ashen.nvim](https://github.com/ficcdaf/ashen.nvim) as a
-  separate dependency, not bundled here.
+- Neovim is coloured by [aether.nvim](https://github.com/bjarneo/aether.nvim)
+  from the generated spec, not by a dependency bundled here.
 - The wallpaper was generated with AI image tools and is released under the
   same MIT license as the theme.
 

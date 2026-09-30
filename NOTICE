@@ -7,8 +7,9 @@ The palette philosophy (a desaturated palette separated by a strictly
 increasing lightness ramp rather than by hue) follows the design of the stock
 Solitude theme (https://github.com/omarchy/solitude).
 
-Neovim support targets ashen.nvim (https://github.com/ficcdaf/ashen.nvim), used
-as a separate dependency and not redistributed as part of this theme.
+Neovim is coloured by the spec Omarchy generates from colors.toml, which drives
+aether.nvim (https://github.com/bjarneo/aether.nvim) as a separate dependency
+not redistributed as part of this theme.
 
 The bundled wallpaper, backgrounds/BG2.webp, was generated with AI image tools
 and is released under the same MIT license as the theme. It was veiled and
