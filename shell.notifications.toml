@@ -1,0 +1,8 @@
+# Override de [notifications]. Mantiene el acento claro de hielo en el
+# countdown; el acento base (colors.toml) es profundo para omawrite.
+background       = "#0e1114"
+background-alpha = 1.0
+text             = "#e4edf2"
+border           = "hyprland.active-border"
+border-alpha     = 1.0
+countdown        = "#6bcee5"

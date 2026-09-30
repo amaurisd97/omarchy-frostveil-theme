@@ -1,0 +1,26 @@
+name: Frostveil
+accent: "#6bcee5"
+cursor: "#6bcee5"
+background: "#0e1114"
+foreground: "#e4edf2"
+details: darker
+
+terminal_colors:
+  normal:
+    black:   "#0e1114"
+    red:     "#277789"
+    green:   "#7089a4"
+    yellow:  "#d1e1e9"
+    blue:    "#86a8cc"
+    magenta: "#9eafe2"
+    cyan:    "#abd9ec"
+    white:   "#d0d9de"
+  bright:
+    black:   "#5c646d"
+    red:     "#4bd5ec"
+    green:   "#9ecdde"
+    yellow:  "#dbeff9"
+    blue:    "#c0d3ff"
+    magenta: "#b9aef8"
+    cyan:    "#90e7fe"
+    white:   "#f0f4f6"

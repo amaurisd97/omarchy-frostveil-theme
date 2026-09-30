@@ -1,0 +1,12 @@
+# Override de [polkit]. accent (glyph del candado/tinte de seleccion)
+# mantiene el acento claro de hielo.
+background       = "#0e1114"
+background-alpha = 1.0
+text             = "#e4edf2"
+text-error       = "#277789"
+border           = "hyprland.active-border"
+border-error     = "#277789"
+border-alpha     = 1.0
+scrim            = "#0e1114"
+scrim-alpha      = 0.5
+accent           = "#6bcee5"

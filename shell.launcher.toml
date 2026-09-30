@@ -1,0 +1,13 @@
+# Override de [launcher]. selected-text mantiene el acento claro de hielo.
+background                = "#0e1114"
+background-alpha          = 0.95
+text                      = "#e4edf2"
+border                    = "hyprland.active-border-foreground"
+border-alpha              = 1.0
+scrim                     = "#0e1114"
+scrim-alpha               = 0.5
+selected-background       = "#e4edf2"
+selected-background-alpha = 0.08
+selected-text             = "#6bcee5"
+selected-border           = "hyprland.active-border-foreground"
+selected-border-alpha     = 0.25

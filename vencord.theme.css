@@ -1,0 +1,29 @@
+/**
+* @name base16 Discord
+* @author @bypass_
+* @version 0.1.0
+* @description Frostveil theme for Discord (Vencord)
+* @source https://github.com/imbypass/base16-Discord
+**/
+
+/* import the parent */
+@import url('https://imbypass.github.io/base16-discord/omarchy-discord.theme.css');
+
+:root {
+    --color00: #0e1114;
+    --color01: #277789;
+    --color02: #7089a4;
+    --color03: #d1e1e9;
+    --color04: #86a8cc;
+    --color05: #9eafe2;
+    --color06: #abd9ec;
+    --color07: #e4edf2;
+    --color08: #5c646d;
+    --color09: #4bd5ec;
+    --color10: #9ecdde;
+    --color11: #dbeff9;
+    --color12: #c0d3ff;
+    --color13: #b9aef8;
+    --color14: #90e7fe;
+    --color15: #f0f4f6;
+}
