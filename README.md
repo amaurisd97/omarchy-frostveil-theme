@@ -24,13 +24,27 @@ edge, so windows read as lit at the corners and dim in the middle.
 | Nord/ice (color4, color12) | `#86a8cc` / `#c0d3ff` |
 | Ice standout (color1, color9) | `#277789` / `#4bd5ec` |
 
+`colors.toml` defines the sixteen `color0`–`color15` slots; the named tokens
+(`red`, `green`, `yellow`, `blue`, `magenta`, `cyan`) and their `bright_`
+counterparts are resolved from them by Omarchy. Note that `orange` resolves to
+the same value as `yellow` (`#d1e1e9`): the ramp has no separate orange slot,
+and templates that ask for `orange` get the pale yellow.
+
 The 16-colour ANSI ramp is defined in `colors.toml` and is what terminals, btop
 and the shell all read, so editing `colors.toml` updates the whole desktop.
 Every `bright_*` slot is genuinely lighter than its `regular_*` counterpart so
-that bold text and TUI key hints stay legible. The ramp is monotonic: the six
-normal slots sit at strictly increasing lightness with no two neighbours able to
-collapse into each other. Neovim is generated from the same ramp, see
-[Neovim](#neovim) below.
+that bold text and TUI key hints stay legible, and no two of the sixteen slots
+share a value, so neighbouring hues can never collapse into each other.
+
+Lightness is not monotonic across `color0`–`color7`, and that is deliberate.
+`color3` (yellow) is the lightest slot in the normal range at Y≈0.73, because
+yellow reads as a highlight when it is pale; the ramp then steps back down to
+`color4` (blue, Y≈0.37) before rising again through magenta and cyan to
+`color7`. So `color4`–`color7` is a strictly increasing run, and `color1`–`color3`
+is another, with the yellow peak between them. Sorting the ramp by lightness
+rather than by slot index is what keeps a TUI's "brightest" colours from
+sitting in the middle of the scale. Neovim is generated from the same ramp,
+see [Neovim](#neovim) below.
 
 ### Two ice blues
 
