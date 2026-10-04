@@ -59,6 +59,18 @@ countdown. The shell sections that must keep bright ice — `[bar]`,
 `[image-picker]` — are pinned through `shell.<section>.toml` overrides, which
 Omarchy merges into the generated `shell.toml` at theme-set time.
 
+btop needs the same split, and for the same reason. Omarchy derives
+`btop.theme` from `colors.toml`, but its own history says not to: the PR that
+introduced the templates (4a07b94) reads "Bring back explicit btop themes —
+they're too involved to derive from a basic color set", which is why `lumon`,
+`retro-82`, `last-horizon` and `solitude` all ship their own. Derived, the
+selected row resolves `selected_fg` = `{{ accent }}` on `selected_bg` =
+`{{ selection }}`, i.e. `#2c7190` on `#2b4663` — 1.79:1, the worst of the 22
+themes Omarchy ships. So `btop.theme` is shipped here, and it is the generated
+file verbatim apart from the selection pair, which uses the
+`selection_background` / `selection_foreground` tokens the template ignores:
+`#6bcee5` behind `#0e1114`, 9.55:1.
+
 `gtk.css` follows the same split. GTK apps get `accent_bg_color` = deep ice
 with a white label (`accent_fg_color`, 5.42:1), and their selection background
 too, since Adwaita uses one colour for both the accent fill and text
