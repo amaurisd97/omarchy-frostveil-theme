@@ -125,6 +125,7 @@ terminal text, and stored as WebP q82 (197 KiB) to keep the repository light.
 | `gtk.css` | GTK4 / Adwaita apps |
 | `vencord.theme.css` | Discord (Vencord) |
 | `chromium.theme` | Chromium/ungoogled-chromium window frame |
+| `btop.theme` | btop; shipped because the derived one loses the selected row (see [Two ice blues](#two-ice-blues)) |
 | `icons.theme` | icon set (`Yaru-prussiangreen-dark`) |
 | `walker.css`, `wofi.css`, `swayosd.css`, `waybar.css`, `mako.ini` | shell surfaces |
 | `shell.bar.toml` | overrides the generated `[bar]` section in `shell.toml` (urgent/attention colour) |
@@ -151,8 +152,8 @@ on your machine:**
 
 Everything else — `colors.toml`, `backgrounds/`, `preview.png`,
 `hyprland.conf`, `hyprlock.conf`, the CSS files, `chromium.theme`,
-`icons.theme` and the `shell.<section>.toml` overrides — is installed
-normally and needs no manual step.
+`btop.theme`, `icons.theme` and the `shell.<section>.toml` overrides — is
+installed normally and needs no manual step.
 
 If you want the skipped ones, the instructions are below.
 
